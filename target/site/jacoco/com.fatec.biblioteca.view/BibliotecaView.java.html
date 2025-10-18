@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BibliotecaView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">biblioteca</a> &gt; <a href="index.source.html" class="el_package">com.fatec.biblioteca.view</a> &gt; <span class="el_source">BibliotecaView.java</span></div><h1>BibliotecaView.java</h1><pre class="source lang-java linenums">package com.fatec.biblioteca.view;
+
+import com.fatec.biblioteca.controller.BibliotecaController;
+import com.fatec.biblioteca.factories.LivroFactory;
+import com.fatec.biblioteca.factories.UsuarioFactory;
+import com.fatec.biblioteca.model.Emprestimo;
+import com.fatec.biblioteca.model.Livro;
+import com.fatec.biblioteca.model.usuarios.Usuario;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * View de console da biblioteca. Fornece um menu simples.
+ */
+public class BibliotecaView {
+    private final BibliotecaController controller;
+<span class="nc" id="L17">    private final Scanner scanner = new Scanner(System.in);</span>
+
+<span class="nc" id="L19">    public BibliotecaView(BibliotecaController controller) {</span>
+<span class="nc" id="L20">        this.controller = controller;</span>
+<span class="nc" id="L21">    }</span>
+
+    public void iniciar() {
+<span class="nc" id="L24">        boolean executar = true;</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        while (executar) {</span>
+<span class="nc" id="L26">            mostrarMenu();</span>
+<span class="nc" id="L27">            String opcao = scanner.nextLine();</span>
+<span class="nc bnc" id="L28" title="All 10 branches missed.">            switch (opcao) {</span>
+<span class="nc" id="L29">                case &quot;1&quot; -&gt; cadastrarLivro();</span>
+<span class="nc" id="L30">                case &quot;2&quot; -&gt; listarLivros();</span>
+<span class="nc" id="L31">                case &quot;3&quot; -&gt; cadastrarUsuario();</span>
+<span class="nc" id="L32">                case &quot;4&quot; -&gt; listarUsuarios();</span>
+<span class="nc" id="L33">                case &quot;5&quot; -&gt; registrarEmprestimo();</span>
+<span class="nc" id="L34">                case &quot;6&quot; -&gt; registrarDevolucao();</span>
+<span class="nc" id="L35">                case &quot;7&quot; -&gt; listarEmprestimos();</span>
+<span class="nc" id="L36">                case &quot;8&quot; -&gt; gerarRelatorio();</span>
+<span class="nc" id="L37">                case &quot;0&quot; -&gt; executar = false;</span>
+<span class="nc" id="L38">                default -&gt; System.out.println(&quot;Opção inválida&quot;);</span>
+            }
+<span class="nc" id="L40">        }</span>
+<span class="nc" id="L41">    }</span>
+
+    private void mostrarMenu() {
+<span class="nc" id="L44">        System.out.println(&quot;\n--- Sistema da Biblioteca ---&quot;);</span>
+<span class="nc" id="L45">        System.out.println(&quot;1 - Cadastrar livro&quot;);</span>
+<span class="nc" id="L46">        System.out.println(&quot;2 - Listar livros&quot;);</span>
+<span class="nc" id="L47">        System.out.println(&quot;3 - Cadastrar usuário&quot;);</span>
+<span class="nc" id="L48">        System.out.println(&quot;4 - Listar usuários&quot;);</span>
+<span class="nc" id="L49">        System.out.println(&quot;5 - Registrar empréstimo&quot;);</span>
+<span class="nc" id="L50">        System.out.println(&quot;6 - Registrar devolução&quot;);</span>
+<span class="nc" id="L51">        System.out.println(&quot;7 - Listar empréstimos&quot;);</span>
+<span class="nc" id="L52">        System.out.println(&quot;8 - Gerar relatório completo&quot;);</span>
+<span class="nc" id="L53">        System.out.println(&quot;0 - Sair&quot;);</span>
+<span class="nc" id="L54">        System.out.print(&quot;Escolha: &quot;);</span>
+<span class="nc" id="L55">    }</span>
+
+    private void cadastrarLivro() {
+<span class="nc" id="L58">        System.out.print(&quot;Título: &quot;);</span>
+<span class="nc" id="L59">        String titulo = scanner.nextLine();</span>
+<span class="nc" id="L60">        System.out.print(&quot;Autor: &quot;);</span>
+<span class="nc" id="L61">        String autor = scanner.nextLine();</span>
+<span class="nc" id="L62">        Livro livro = LivroFactory.criarLivro(titulo, autor);</span>
+<span class="nc" id="L63">        controller.cadastrarLivro(livro);</span>
+<span class="nc" id="L64">        System.out.println(&quot;Livro cadastrado.&quot;);</span>
+<span class="nc" id="L65">    }</span>
+
+    private void listarLivros() {
+<span class="nc" id="L68">        List&lt;Livro&gt; livros = controller.listarLivros();</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (livros.isEmpty()) {</span>
+<span class="nc" id="L70">            System.out.println(&quot;Nenhum livro cadastrado.&quot;);</span>
+<span class="nc" id="L71">            return;</span>
+        }
+<span class="nc" id="L73">        livros.forEach(System.out::println);</span>
+<span class="nc" id="L74">    }</span>
+
+    private void cadastrarUsuario() {
+<span class="nc" id="L77">        System.out.print(&quot;Tipo (aluno|professor|bibliotecario): &quot;);</span>
+<span class="nc" id="L78">        String tipo = scanner.nextLine();</span>
+<span class="nc" id="L79">        System.out.print(&quot;Nome: &quot;);</span>
+<span class="nc" id="L80">        String nome = scanner.nextLine();</span>
+        try {
+<span class="nc" id="L82">            Usuario usuario = UsuarioFactory.criarUsuario(tipo, nome);</span>
+<span class="nc" id="L83">            controller.cadastrarUsuario(usuario);</span>
+<span class="nc" id="L84">            System.out.println(&quot;Usuário cadastrado.&quot;);</span>
+<span class="nc" id="L85">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L86">            System.out.println(&quot;Erro: &quot; + e.getMessage());</span>
+<span class="nc" id="L87">        }</span>
+<span class="nc" id="L88">    }</span>
+
+    private void listarUsuarios() {
+<span class="nc" id="L91">        List&lt;Usuario&gt; usuarios = controller.listarUsuarios();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (usuarios.isEmpty()) {</span>
+<span class="nc" id="L93">            System.out.println(&quot;Nenhum usuário cadastrado.&quot;);</span>
+<span class="nc" id="L94">            return;</span>
+        }
+<span class="nc" id="L96">        usuarios.forEach(System.out::println);</span>
+<span class="nc" id="L97">    }</span>
+
+    private void registrarEmprestimo() {
+<span class="nc" id="L100">        System.out.println(&quot;\n--- Registrar Empréstimo ---&quot;);</span>
+<span class="nc" id="L101">        List&lt;Usuario&gt; usuarios = controller.listarUsuarios();</span>
+<span class="nc" id="L102">        List&lt;Livro&gt; livros = controller.listarLivros();</span>
+        
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (usuarios.isEmpty()) {</span>
+<span class="nc" id="L105">            System.out.println(&quot;Nenhum usuário cadastrado. Cadastre um usuário primeiro.&quot;);</span>
+<span class="nc" id="L106">            return;</span>
+        }
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (livros.isEmpty()) {</span>
+<span class="nc" id="L109">            System.out.println(&quot;Nenhum livro cadastrado. Cadastre um livro primeiro.&quot;);</span>
+<span class="nc" id="L110">            return;</span>
+        }
+        
+<span class="nc" id="L113">        System.out.println(&quot;Usuários disponíveis:&quot;);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        for (int i = 0; i &lt; usuarios.size(); i++) {</span>
+<span class="nc" id="L115">            System.out.println(i + &quot; - &quot; + usuarios.get(i).getNome());</span>
+        }
+<span class="nc" id="L117">        System.out.print(&quot;Escolha o índice do usuário: &quot;);</span>
+<span class="nc" id="L118">        int idxUsuario = Integer.parseInt(scanner.nextLine());</span>
+        
+<span class="nc" id="L120">        System.out.println(&quot;\nLivros disponíveis:&quot;);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        for (int i = 0; i &lt; livros.size(); i++) {</span>
+<span class="nc" id="L122">            Livro l = livros.get(i);</span>
+<span class="nc" id="L123">            System.out.println(i + &quot; - &quot; + l.getTitulo() + &quot; (disponível: &quot; + l.isDisponivel() + &quot;)&quot;);</span>
+        }
+<span class="nc" id="L125">        System.out.print(&quot;Escolha o índice do livro: &quot;);</span>
+<span class="nc" id="L126">        int idxLivro = Integer.parseInt(scanner.nextLine());</span>
+        
+        try {
+<span class="nc" id="L129">            Usuario u = usuarios.get(idxUsuario);</span>
+<span class="nc" id="L130">            Livro l = livros.get(idxLivro);</span>
+<span class="nc" id="L131">            controller.registrarEmprestimo(u, l);</span>
+<span class="nc" id="L132">            System.out.println(&quot;Empréstimo registrado com sucesso!&quot;);</span>
+<span class="nc" id="L133">        } catch (IllegalStateException e) {</span>
+<span class="nc" id="L134">            System.out.println(&quot;Erro: &quot; + e.getMessage());</span>
+<span class="nc" id="L135">        } catch (Exception e) {</span>
+<span class="nc" id="L136">            System.out.println(&quot;Erro ao registrar empréstimo: &quot; + e.getMessage());</span>
+<span class="nc" id="L137">        }</span>
+<span class="nc" id="L138">    }</span>
+
+    private void registrarDevolucao() {
+<span class="nc" id="L141">        System.out.println(&quot;\n--- Registrar Devolução ---&quot;);</span>
+<span class="nc" id="L142">        List&lt;Emprestimo&gt; emprestimos = controller.listarEmprestimos().stream()</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            .filter(e -&gt; e.getStatus() == Emprestimo.Status.EMPRESTADO)</span>
+<span class="nc" id="L144">            .toList();</span>
+        
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        if (emprestimos.isEmpty()) {</span>
+<span class="nc" id="L147">            System.out.println(&quot;Nenhum empréstimo ativo.&quot;);</span>
+<span class="nc" id="L148">            return;</span>
+        }
+        
+<span class="nc" id="L151">        System.out.println(&quot;Empréstimos ativos:&quot;);</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">        for (int i = 0; i &lt; emprestimos.size(); i++) {</span>
+<span class="nc" id="L153">            Emprestimo e = emprestimos.get(i);</span>
+<span class="nc" id="L154">            System.out.println(i + &quot; - &quot; + e.getUsuario().getNome() + &quot; | &quot; + e.getLivro().getTitulo());</span>
+        }
+<span class="nc" id="L156">        System.out.print(&quot;Escolha o índice do empréstimo para devolver: &quot;);</span>
+<span class="nc" id="L157">        int idx = Integer.parseInt(scanner.nextLine());</span>
+        
+        try {
+<span class="nc" id="L160">            Emprestimo emp = emprestimos.get(idx);</span>
+<span class="nc" id="L161">            controller.registrarDevolucao(emp);</span>
+<span class="nc" id="L162">            System.out.println(&quot;Devolução registrada com sucesso!&quot;);</span>
+<span class="nc" id="L163">        } catch (Exception e) {</span>
+<span class="nc" id="L164">            System.out.println(&quot;Erro ao registrar devolução: &quot; + e.getMessage());</span>
+<span class="nc" id="L165">        }</span>
+<span class="nc" id="L166">    }</span>
+
+    private void listarEmprestimos() {
+<span class="nc" id="L169">        List&lt;Emprestimo&gt; emprestimos = controller.listarEmprestimos();</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (emprestimos.isEmpty()) {</span>
+<span class="nc" id="L171">            System.out.println(&quot;Nenhum empréstimo registrado.&quot;);</span>
+<span class="nc" id="L172">            return;</span>
+        }
+<span class="nc" id="L174">        System.out.println(&quot;\nEmpréstimos:&quot;);</span>
+<span class="nc" id="L175">        emprestimos.forEach(System.out::println);</span>
+<span class="nc" id="L176">    }</span>
+
+    private void gerarRelatorio() {
+<span class="nc" id="L179">        System.out.println(&quot;\n&quot; + controller.gerarRelatorio());</span>
+<span class="nc" id="L180">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
