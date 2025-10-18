@@ -7,6 +7,7 @@ import com.fatec.biblioteca.model.usuarios.Usuario;
 import java.util.List;
 
 /**
+ * 
  * Controller da biblioteca.
  * Aplica o princípio da inversão de dependências (DIP).
  * Recebe uma instância de BibliotecaRepository via injeção de dependência.
