@@ -1,0 +1,16 @@
+com/fatec/biblioteca/controller/BibliotecaControllerTest$GerenciamentoDevolucoes.class
+com/fatec/biblioteca/model/BibliotecaTest.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest$TestesIntegracao.class
+com/fatec/biblioteca/factories/UsuarioFactoryTest.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest$GerenciamentoRelatorios.class
+com/fatec/biblioteca/model/EmprestimoTest.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest$GerenciamentoUsuarios.class
+com/fatec/biblioteca/model/usuarios/UsuarioTest.class
+com/fatec/biblioteca/model/LivroTest.class
+com/fatec/biblioteca/factories/LivroFactoryTest.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest$GerenciamentoLivros.class
+com/fatec/biblioteca/MainTest.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest$GerenciamentoEmprestimos.class
+com/fatec/biblioteca/view/BibliotecaViewTest.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest$FakeRepository.class
