@@ -18,6 +18,12 @@ public class Emprestimo {
     }
 
     public Emprestimo(Usuario usuario, Livro livro) {
+        if (usuario == null) {
+            throw new IllegalArgumentException("Usuário não pode ser nulo");
+        }
+        if (livro == null) {
+            throw new IllegalArgumentException("Livro não pode ser nulo");
+        }
         this.usuario = usuario;
         this.livro = livro;
         this.dataEmprestimo = LocalDate.now();

@@ -9,6 +9,12 @@ public class Livro {
     private int quantidade;
 
     public Livro(String titulo, String autor) {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Título não pode ser nulo ou vazio");
+        }
+        if (autor == null || autor.trim().isEmpty()) {
+            throw new IllegalArgumentException("Autor não pode ser nulo ou vazio");
+        }
         this.titulo = titulo;
         this.autor = autor;
         this.quantidade = 1;

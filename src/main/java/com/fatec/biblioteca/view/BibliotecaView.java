@@ -34,66 +34,107 @@ public class BibliotecaView {
                 case "6" -> registrarDevolucao();
                 case "7" -> listarEmprestimos();
                 case "8" -> gerarRelatorio();
-                case "0" -> executar = false;
-                default -> System.out.println("Opção inválida");
+                case "0" -> {
+                    executar = false;
+                    System.out.println("Sistema encerrado. Obrigado!");
+                }
+                default -> System.out.println("Opção inválida! Tente novamente.");
             }
         }
     }
 
-    private void mostrarMenu() {
-        System.out.println("\n--- Sistema da Biblioteca ---");
-        System.out.println("1 - Cadastrar livro");
-        System.out.println("2 - Listar livros");
-        System.out.println("3 - Cadastrar usuário");
-        System.out.println("4 - Listar usuários");
-        System.out.println("5 - Registrar empréstimo");
-        System.out.println("6 - Registrar devolução");
-        System.out.println("7 - Listar empréstimos");
-        System.out.println("8 - Gerar relatório completo");
-        System.out.println("0 - Sair");
-        System.out.print("Escolha: ");
+    /**
+     * Exibe o menu principal do sistema.
+     */
+    public void mostrarMenu() {
+        System.out.println("\n=== SISTEMA BIBLIOTECA ===");
+        System.out.println("1. Cadastrar Livro");
+        System.out.println("2. Listar Livros");
+        System.out.println("3. Cadastrar Usuário");
+        System.out.println("4. Listar Usuários");
+        System.out.println("5. Registrar Empréstimo");
+        System.out.println("6. Registrar Devolução");
+        System.out.println("7. Listar Empréstimos");
+        System.out.println("8. Gerar Relatório");
+        System.out.println("0. Sair");
+        System.out.print("Escolha uma opção: ");
     }
 
-    private void cadastrarLivro() {
-        System.out.print("Título: ");
+    /**
+     * Cadastra um novo livro no sistema.
+     */
+    public void cadastrarLivro() {
+        System.out.print("Digite o título do livro: ");
         String titulo = scanner.nextLine();
-        System.out.print("Autor: ");
+        System.out.print("Digite o autor do livro: ");
         String autor = scanner.nextLine();
         Livro livro = LivroFactory.criarLivro(titulo, autor);
         controller.cadastrarLivro(livro);
-        System.out.println("Livro cadastrado.");
+        System.out.println("Livro cadastrado com sucesso!");
     }
 
-    private void listarLivros() {
+    /**
+     * Lista todos os livros cadastrados.
+     */
+    public void listarLivros() {
+        System.out.println("\n=== LIVROS CADASTRADOS ===");
         List<Livro> livros = controller.listarLivros();
         if (livros.isEmpty()) {
             System.out.println("Nenhum livro cadastrado.");
-            return;
+        } else {
+            for (Livro livro : livros) {
+                System.out.println(livro);
+            }
         }
-        livros.forEach(System.out::println);
     }
 
-    private void cadastrarUsuario() {
-        System.out.print("Tipo (aluno|professor|bibliotecario): ");
-        String tipo = scanner.nextLine();
-        System.out.print("Nome: ");
+    /**
+     * Cadastra um novo usuário no sistema.
+     */
+    public void cadastrarUsuario() {
+        System.out.print("Digite o nome do usuário: ");
         String nome = scanner.nextLine();
+        
+        System.out.println("Escolha o tipo de usuário:");
+        System.out.println("1. Aluno");
+        System.out.println("2. Professor");
+        System.out.println("3. Bibliotecário");
+        System.out.print("Tipo: ");
+        String tipoOpcao = scanner.nextLine();
+        
+        String tipo;
+        switch (tipoOpcao) {
+            case "1" -> tipo = "aluno";
+            case "2" -> tipo = "professor";
+            case "3" -> tipo = "bibliotecario";
+            default -> {
+                System.out.println("Opção inválida!");
+                return;
+            }
+        }
+        
         try {
             Usuario usuario = UsuarioFactory.criarUsuario(tipo, nome);
             controller.cadastrarUsuario(usuario);
-            System.out.println("Usuário cadastrado.");
+            System.out.println("Usuário cadastrado com sucesso!");
         } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
 
-    private void listarUsuarios() {
+    /**
+     * Lista todos os usuários cadastrados.
+     */
+    public void listarUsuarios() {
+        System.out.println("\n=== USUÁRIOS CADASTRADOS ===");
         List<Usuario> usuarios = controller.listarUsuarios();
         if (usuarios.isEmpty()) {
             System.out.println("Nenhum usuário cadastrado.");
-            return;
+        } else {
+            for (Usuario usuario : usuarios) {
+                System.out.println(usuario);
+            }
         }
-        usuarios.forEach(System.out::println);
     }
 
     private void registrarEmprestimo() {
@@ -165,17 +206,26 @@ public class BibliotecaView {
         }
     }
 
-    private void listarEmprestimos() {
+    /**
+     * Lista todos os empréstimos registrados.
+     */
+    public void listarEmprestimos() {
+        System.out.println("\n=== EMPRÉSTIMOS ===");
         List<Emprestimo> emprestimos = controller.listarEmprestimos();
         if (emprestimos.isEmpty()) {
-            System.out.println("Nenhum empréstimo registrado.");
-            return;
+            System.out.println("Nenhum empréstimo encontrado.");
+        } else {
+            for (Emprestimo emprestimo : emprestimos) {
+                System.out.println(emprestimo);
+            }
         }
-        System.out.println("\nEmpréstimos:");
-        emprestimos.forEach(System.out::println);
     }
 
-    private void gerarRelatorio() {
-        System.out.println("\n" + controller.gerarRelatorio());
+    /**
+     * Gera e exibe o relatório completo da biblioteca.
+     */
+    public void gerarRelatorio() {
+        String relatorio = controller.gerarRelatorio();
+        System.out.println(relatorio);
     }
 }

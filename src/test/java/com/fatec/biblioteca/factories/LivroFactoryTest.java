@@ -18,50 +18,44 @@ public class LivroFactoryTest {
 
     @Test
     void criarLivroComTituloVazio() {
-        Livro l = LivroFactory.criarLivro("", "Autor");
-        assertNotNull(l);
-        assertEquals("", l.getTitulo());
-        assertEquals("Autor", l.getAutor());
+        assertThrows(IllegalArgumentException.class, () -> {
+            LivroFactory.criarLivro("", "Autor");
+        }, "Deveria lançar exceção para título vazio");
     }
 
     @Test
     void criarLivroComAutorVazio() {
-        Livro l = LivroFactory.criarLivro("Titulo", "");
-        assertNotNull(l);
-        assertEquals("Titulo", l.getTitulo());
-        assertEquals("", l.getAutor());
+        assertThrows(IllegalArgumentException.class, () -> {
+            LivroFactory.criarLivro("Titulo", "");
+        }, "Deveria lançar exceção para autor vazio");
     }
 
     @Test
     void criarLivroComTituloEAutorVazios() {
-        Livro l = LivroFactory.criarLivro("", "");
-        assertNotNull(l);
-        assertEquals("", l.getTitulo());
-        assertEquals("", l.getAutor());
+        assertThrows(IllegalArgumentException.class, () -> {
+            LivroFactory.criarLivro("", "");
+        }, "Deveria lançar exceção para título e autor vazios");
     }
 
     @Test
     void criarLivroComTituloNull() {
-        Livro l = LivroFactory.criarLivro(null, "Autor");
-        assertNotNull(l);
-        assertNull(l.getTitulo());
-        assertEquals("Autor", l.getAutor());
+        assertThrows(IllegalArgumentException.class, () -> {
+            LivroFactory.criarLivro(null, "Autor");
+        }, "Deveria lançar exceção para título nulo");
     }
 
     @Test
     void criarLivroComAutorNull() {
-        Livro l = LivroFactory.criarLivro("Titulo", null);
-        assertNotNull(l);
-        assertEquals("Titulo", l.getTitulo());
-        assertNull(l.getAutor());
+        assertThrows(IllegalArgumentException.class, () -> {
+            LivroFactory.criarLivro("Titulo", null);
+        }, "Deveria lançar exceção para autor nulo");
     }
 
     @Test
     void criarLivroComTituloEAutorNull() {
-        Livro l = LivroFactory.criarLivro(null, null);
-        assertNotNull(l);
-        assertNull(l.getTitulo());
-        assertNull(l.getAutor());
+        assertThrows(IllegalArgumentException.class, () -> {
+            LivroFactory.criarLivro(null, null);
+        }, "Deveria lançar exceção para título e autor nulos");
     }
 
     @Test

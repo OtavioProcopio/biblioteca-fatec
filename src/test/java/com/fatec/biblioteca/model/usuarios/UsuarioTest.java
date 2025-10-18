@@ -103,13 +103,17 @@ public class UsuarioTest {
 
     @Test
     void usuariosComNomesVazios() {
-        Usuario aluno = new Aluno("");
-        Usuario professor = new Professor("");
-        Usuario bibliotecario = new Bibliotecario("");
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Aluno("");
+        }, "Deveria lançar exceção para nome vazio");
         
-        assertEquals("", aluno.getNome());
-        assertEquals("", professor.getNome());
-        assertEquals("", bibliotecario.getNome());
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Professor("");
+        }, "Deveria lançar exceção para nome vazio");
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Bibliotecario("");
+        }, "Deveria lançar exceção para nome vazio");
     }
 
     @Test

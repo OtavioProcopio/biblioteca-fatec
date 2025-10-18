@@ -19,6 +19,12 @@ public class BibliotecaTest {
         f.set(null, null);
     }
 
+    @BeforeEach
+    void setUp() {
+        // Reset singleton para cada teste
+        Biblioteca.resetInstancia();
+    }
+
     @Test
     void getInstanciaRetornaMesmoObjeto() {
         Biblioteca b1 = Biblioteca.getInstancia();
@@ -32,8 +38,10 @@ public class BibliotecaTest {
         Livro l = new Livro("A", "B");
         b.adicionarLivro(l);
         List<Livro> livros = b.listarLivros();
-        assertEquals(1, livros.size());
-        assertEquals("A", livros.get(0).getTitulo());
+        // Agora temos 10 livros padrão + 1 novo = 11
+        assertEquals(11, livros.size());
+        // Verifica se o último livro adicionado está lá
+        assertTrue(livros.stream().anyMatch(livro -> "A".equals(livro.getTitulo())));
     }
 
     @Test
@@ -42,7 +50,10 @@ public class BibliotecaTest {
         Livro l = new Livro("A", "B");
         b.adicionarLivro(l);
         b.removerLivro(l);
-        assertTrue(b.listarLivros().isEmpty());
+        // Ainda temos os 10 livros padrão
+        assertEquals(10, b.listarLivros().size());
+        // Verifica se o livro removido não está mais lá
+        assertFalse(b.listarLivros().stream().anyMatch(livro -> "A".equals(livro.getTitulo())));
     }
 
     @Test
@@ -50,8 +61,11 @@ public class BibliotecaTest {
         Biblioteca b = Biblioteca.getInstancia();
         Usuario u = new Aluno("Pedro");
         b.adicionarUsuario(u);
-        assertEquals(1, b.listarUsuarios().size());
-        assertEquals("Pedro", b.listarUsuarios().get(0).getNome());
+        List<Usuario> usuarios = b.listarUsuarios();
+        // Agora temos 10 usuários padrão + 1 novo = 11
+        assertEquals(11, usuarios.size());
+        // Verifica se o último usuário adicionado está lá
+        assertTrue(usuarios.stream().anyMatch(usuario -> "Pedro".equals(usuario.getNome())));
     }
 
     @Test
