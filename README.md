@@ -660,13 +660,6 @@ make stats    # Ver estatísticas completas
 
 Este projeto foi desenvolvido como **trabalho acadêmico** para a FATEC (Faculdade de Tecnologia) e está disponível sob a licença MIT para fins educacionais e de portfólio.
 
-**Propósito Acadêmico:**
-- Demonstração de competências técnicas
-- Aplicação de boas práticas de desenvolvimento
-- Portfolio de Engenharia de Software
-- Estudo de arquitetura e design patterns
-
----
 
 ## 👨‍💻 Autor
 
