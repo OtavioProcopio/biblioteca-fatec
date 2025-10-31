@@ -26,7 +26,7 @@ Sistema completo de gerenciamento de biblioteca desenvolvido como projeto acadê
 
 <table>
 <tr>
-<td width="40%">
+<td width="45%">
 
 **🏗️ Arquitetura**
 - ✅ Padrão **MVC** (Model-View-Controller)
@@ -36,7 +36,7 @@ Sistema completo de gerenciamento de biblioteca desenvolvido como projeto acadê
 - ✅ **Thread Safety** (Singleton)
 
 </td>
-<td width="35%">
+<td width="45%">
 
 **🎨 Design Patterns**
 - ✅ **Singleton** (Thread-Safe)
@@ -44,16 +44,6 @@ Sistema completo de gerenciamento de biblioteca desenvolvido como projeto acadê
 - ✅ **Repository** (Interface)
 - ✅ **Dependency Injection**
 - ✅ **Strategy** (Tipos de Usuário)
-
-</td>
-<td width="25%">
-
-**🧪 Qualidade**
-- ✅ **115 Testes** (100% passando)
-- ✅ **92% Code Coverage**
-- ✅ **Build Automation**
-- ✅ **JavaDoc Completo**
-- ✅ **Makefile Inteligente**
 
 </td>
 </tr>
@@ -353,25 +343,6 @@ make validate             # Valida estrutura do projeto
 make ci                   # Pipeline CI completo
 ```
 
-### 🎨 **Interface Visual**
-
-O Makefile inclui saída colorida e organizada:
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Sistema de Biblioteca                       │
-│                 Comandos Makefile Disponíveis                  │
-└─────────────────────────────────────────────────────────────────┘
-
-all                   Build completo: limpa, compila, testa e gera cobertura
-build                 Compila o projeto
-test                  Executa todos os testes
-run                   Executa a aplicação principal
-coverage              Gera relatório de cobertura de código
-```
-
----
-
 ## 📖 Como Usar
 
 ### 🖥️ Interface do Sistema
@@ -467,34 +438,6 @@ O projeto mantém **92% de cobertura** com **115 testes automatizados**:
 | **🏭 Factories** | 100% | 17 testes | ✅ Completa |
 | **⚙️ Main** | 83% | 4 testes | ✅ Adequada |
 
-### 🎯 **Suítes de Teste Implementadas**
-
-#### **📱 View Layer** - `BibliotecaViewTest` (22 testes)
-- ✅ **Listagem**: Livros, usuários, empréstimos, relatórios
-- ✅ **Cadastros**: Livros e usuários com simulação de entrada
-- ✅ **Empréstimos/Devoluções**: Teste via reflexão de métodos privados
-- ✅ **Validações**: Entrada inválida, índices incorretos, exceções
-- ✅ **Edge Cases**: Múltiplas devoluções, disponibilidade de livros
-
-#### **🎮 Controller Layer** - `BibliotecaControllerTest` (26 testes)
-- ✅ **Gerenciamento de Livros**: CRUD completo
-- ✅ **Gerenciamento de Usuários**: Cadastro e listagem
-- ✅ **Sistema de Empréstimos**: Registro e validações  
-- ✅ **Sistema de Devoluções**: Processamento e status
-- ✅ **Relatórios**: Geração e formatação
-- ✅ **Integração**: Fluxo completo de operações
-
-#### **💾 Model Layer** - `BibliotecaTest` + `EmprestimoTest` + `LivroTest` + `UsuarioTest` (46 testes)
-- ✅ **Singleton**: Thread safety e instância única
-- ✅ **Entidades**: Validações, estados e comportamentos
-- ✅ **Relacionamentos**: Empréstimos e associações
-- ✅ **Dados Padrão**: Carregamento e integridade
-- ✅ **Exceções**: Tratamento de erros e condições inválidas
-
-#### **🏭 Factory Layer** - `LivroFactoryTest` + `UsuarioFactoryTest` (17 testes)
-- ✅ **Criação de Livros**: Validações e instanciação
-- ✅ **Criação de Usuários**: Tipos e hierarquia
-- ✅ **Tratamento de Erros**: Parâmetros inválidos
 
 ### 🚀 **Executar Testes**
 
@@ -529,55 +472,6 @@ open target/site/jacoco/index.html
 
 ---
 
-## 🎓 Competências Demonstradas
-
-### 🏗️ **Engenharia de Software**
-
-**Princípios SOLID:**
-- **S**ingle Responsibility - Cada classe com responsabilidade única
-- **O**pen/Closed - Extensível via herança sem modificar código base
-- **L**iskov Substitution - Subclasses completamente substituíveis
-- **I**nterface Segregation - Interface `BibliotecaRepository` focada
-- **D**ependency Inversion - Controller depende de abstrações
-
-**Design Patterns:**
-- ✅ **Singleton** com thread safety (double-checked locking)
-- ✅ **Factory Method** para criação de objetos
-- ✅ **Repository** para abstração de persistência
-- ✅ **Dependency Injection** para inversão de controle
-- ✅ **Strategy** via herança polimórfica
-
-### 🧪 **Qualidade e Testes**
-
-**Metodologias:**
-- ✅ **Test-Driven Development** (TDD)
-- ✅ **Behavior-Driven Development** (BDD)
-- ✅ **Code Coverage** tracking (92%)
-- ✅ **Integration Testing**
-- ✅ **Exception Testing**
-
-**Técnicas Avançadas:**
-- ✅ **Reflection** para teste de métodos privados
-- ✅ **Mock Objects** com simulação de entrada
-- ✅ **Edge Case Testing**
-- ✅ **Thread Safety Testing**
-
-### 🔧 **DevOps e Automação**
-
-**Build Automation:**
-- ✅ **Maven** para gestão de dependências
-- ✅ **Makefile** para automação de tarefas
-- ✅ **CI Pipeline** com `make ci`
-- ✅ **Automated Testing**
-- ✅ **Code Quality Gates**
-
-**Documentação:**
-- ✅ **JavaDoc** completo
-- ✅ **README** técnico detalhado
-- ✅ **Diagramas** arquiteturais
-- ✅ **Cobertura** visual de testes
-
----
 
 ## 🚀 Melhorias Futuras
 
@@ -626,33 +520,6 @@ open target/site/jacoco/index.html
 - **📱 Mobile API**: Endpoints para app mobile
 - **🔐 Multi-tenancy**: Suporte a múltiplas bibliotecas
 - **📊 Relatórios PDF**: Exportação de relatórios
-
----
-
-## 🎖️ Reconhecimentos
-
-### 🏆 **Métricas de Qualidade**
-
-| Métrica | Valor | Status |
-|---------|-------|--------|
-| **Cobertura de Testes** | 92% | 🏆 Excelente |
-| **Testes Automatizados** | 115 testes | ✅ Robusto |
-| **Complexidade Ciclomática** | Baixa | ✅ Manutenível |
-| **Acoplamento** | Baixo | ✅ Flexível |
-| **Coesão** | Alta | ✅ Organizado |
-
-### 📈 **Estatísticas do Projeto**
-
-```bash
-make stats    # Ver estatísticas completas
-```
-
-- 📊 **22 arquivos Java** (13 principais + 9 testes)
-- 📊 **2.684 linhas de código**
-- 📊 **115 testes automatizados**
-- 📊 **92% cobertura** de código
-- 📊 **Zero bugs** conhecidos
-- 📊 **100% testes** passando
 
 ---
 
