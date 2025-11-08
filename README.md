@@ -126,8 +126,10 @@ Para demonstração imediata, o sistema inicializa com:
 
 | Tecnologia | Versão | Propósito | Status |
 |------------|--------|-----------|--------|
-| **☕ Java** | 21 | Linguagem principal | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
+| **☕ Java** | 17+ | Linguagem principal | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
 | **🔧 Maven** | 3.6.3 | Build automation & dependencies | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
+| **🍃 Spring Boot** | 3.2.0 | Framework REST API | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
+| **📱 Springdoc OpenAPI** | 2.3.0 | API Documentation (Swagger) | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
 | **🧪 JUnit 5** | 5.10.0 | Framework de testes unitários | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
 | **📊 JaCoCo** | 0.8.10 | Análise de cobertura de código | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
 | **📝 JavaDoc** | Built-in | Documentação automatizada | ![Active](https://img.shields.io/badge/-Active-brightgreen) |
@@ -136,6 +138,20 @@ Para demonstração imediata, o sistema inicializa com:
 ### 🏗️ **Dependências e Plugins**
 
 ```xml
+<!-- Spring Boot Web -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <version>3.2.0</version>
+</dependency>
+
+<!-- Springdoc OpenAPI (Swagger) -->
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.3.0</version>
+</dependency>
+
 <!-- Testes -->
 <dependency>
     <groupId>org.junit.jupiter</groupId>
@@ -146,9 +162,8 @@ Para demonstração imediata, o sistema inicializa com:
 
 <!-- Plugins Maven -->
 <plugin>
-    <groupId>org.jacoco</groupId>
-    <artifactId>jacoco-maven-plugin</artifactId>
-    <version>0.8.10</version>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
 </plugin>
 ```
 
@@ -288,10 +303,23 @@ make all
 # OU manualmente:
 mvn clean compile test package
 
-# Executar aplicação
-make run
-# OU: mvn exec:java -Dexec.mainClass="com.fatec.biblioteca.Main"
+# Executar aplicação console
+java -cp target/biblioteca-1.0-SNAPSHOT.jar com.fatec.biblioteca.Main
+
+# Executar REST API (recomendado)
+mvn spring-boot:run
+# OU: make run
 ```
+
+### 🌐 Acessar REST API
+
+Após iniciar a aplicação com `mvn spring-boot:run`, acesse:
+
+- **API Base**: http://localhost:8080
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **API Docs JSON**: http://localhost:8080/api-docs
+
+**Documentação completa**: [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
 
 ### 🐳 Usando Dev Container
 
@@ -442,7 +470,7 @@ O projeto mantém **92% de cobertura** com **115 testes automatizados**:
 ### 🚀 **Executar Testes**
 
 ```bash
-# Todos os testes
+# Todos os testes (115 unitários + 18 integração = 133 testes)
 make test
 
 # Testes específicos
@@ -475,26 +503,34 @@ open target/site/jacoco/index.html
 
 ## 🚀 Melhorias Futuras
 
+### ✅ Versão 2.0 - REST API (IMPLEMENTADO)
+- ✅ Spring Boot REST API
+- ✅ Swagger/OpenAPI documentation
+- ✅ JSON request/response handling
+- ✅ Validation and error handling
+- ✅ 18 integration tests
+
+**Acesse a documentação completa da API em**: [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
+
+**Endpoints Disponíveis:**
+- 📚 `/api/livros` - Gerenciar livros
+- 👥 `/api/usuarios` - Gerenciar usuários
+- 📖 `/api/emprestimos` - Gerenciar empréstimos
+- 📊 `/api/relatorios` - Gerar relatórios
+
+**Swagger UI**: `http://localhost:8080/swagger-ui.html`
+
 ### 🎯 Roadmap de Evolução
 
 <table>
 <tr>
 <td width="50%">
 
-**🔄 Versão 2.0 - Persistência**
+**🔄 Versão 3.0 - Persistência**
 - 🗄️ Integração com banco H2/PostgreSQL
 - 💾 JPA/Hibernate para ORM
 - 🔄 Migrations automáticas
 - 📊 Connection pooling
-
-**🌐 Versão 3.0 - Web API**
-- 🍃 Spring Boot REST API
-- 📱 Swagger/OpenAPI documentation
-- 🔐 JWT Authentication
-- 🌍 CORS configuration
-
-</td>
-<td width="50%">
 
 **🎨 Versão 4.0 - Frontend**
 - ⚛️ React.js SPA
@@ -502,11 +538,20 @@ open target/site/jacoco/index.html
 - 🎨 Material-UI components
 - 📊 Dashboard com métricas
 
+</td>
+<td width="50%">
+
 **☁️ Versão 5.0 - Cloud Native**
 - 🐳 Docker containerization
 - ☸️ Kubernetes deployment
 - 📊 Monitoring (Prometheus/Grafana)
 - 🚀 CI/CD pipeline (GitHub Actions)
+
+**🔐 Versão 6.0 - Security**
+- 🔐 JWT Authentication
+- 👤 User roles and permissions
+- 🔒 OAuth2 integration
+- 🛡️ Security auditing
 
 </td>
 </tr>

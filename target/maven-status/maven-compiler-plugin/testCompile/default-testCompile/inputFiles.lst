@@ -1,9 +1,0 @@
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/controller/BibliotecaControllerTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/model/EmprestimoTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/factories/UsuarioFactoryTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/model/BibliotecaTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/view/BibliotecaViewTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/MainTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/model/LivroTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/model/usuarios/UsuarioTest.java
-/workspaces/biblioteca/src/test/java/com/fatec/biblioteca/factories/LivroFactoryTest.java

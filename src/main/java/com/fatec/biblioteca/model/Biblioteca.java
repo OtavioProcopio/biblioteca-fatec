@@ -214,12 +214,24 @@ public class Biblioteca implements BibliotecaRepository {
         if (usuarios.isEmpty()) {
             report.append("Nenhum usuário cadastrado.\n");
         } else {
+            // Optimize by creating a map of active loans per user
+            java.util.Map<Usuario, java.util.List<Emprestimo>> emprestimosPorUsuario = new java.util.HashMap<>();
+            for (Emprestimo emp : emprestimos) {
+                if (emp.getStatus() == Emprestimo.Status.EMPRESTADO) {
+                    emprestimosPorUsuario
+                        .computeIfAbsent(emp.getUsuario(), k -> new java.util.ArrayList<>())
+                        .add(emp);
+                }
+            }
+            
             for (Usuario usuario : usuarios) {
                 report.append(usuario).append("\n");
-                // listar livros emprestados para este usuário
-                for (Emprestimo emp : emprestimos) {
-                    if (emp.getUsuario().equals(usuario) && emp.getStatus() == Emprestimo.Status.EMPRESTADO) {
-                        report.append("  - Emprestado: ").append(emp.getLivro().getTitulo()).append(" (em " ).append(emp.getDataEmprestimo()).append(")\n");
+                // List books borrowed by this user from the optimized map
+                java.util.List<Emprestimo> emprestimosUsuario = emprestimosPorUsuario.get(usuario);
+                if (emprestimosUsuario != null) {
+                    for (Emprestimo emp : emprestimosUsuario) {
+                        report.append("  - Emprestado: ").append(emp.getLivro().getTitulo())
+                              .append(" (em ").append(emp.getDataEmprestimo()).append(")\n");
                     }
                 }
             }
