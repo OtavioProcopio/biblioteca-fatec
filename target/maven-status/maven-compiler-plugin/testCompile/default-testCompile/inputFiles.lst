@@ -1,9 +1,0 @@
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/MainTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/controller/BibliotecaControllerTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/factories/LivroFactoryTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/factories/UsuarioFactoryTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/model/BibliotecaTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/model/EmprestimoTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/model/LivroTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/model/usuarios/UsuarioTest.java
-/home/runner/work/biblioteca-fatec/biblioteca-fatec/src/test/java/com/fatec/biblioteca/view/BibliotecaViewTest.java
