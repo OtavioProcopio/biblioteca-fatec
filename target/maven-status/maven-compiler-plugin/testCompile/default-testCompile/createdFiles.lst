@@ -1,7 +1,7 @@
 com/fatec/biblioteca/controller/BibliotecaControllerTest$GerenciamentoDevolucoes.class
 com/fatec/biblioteca/model/BibliotecaTest.class
-com/fatec/biblioteca/controller/BibliotecaControllerTest.class
 com/fatec/biblioteca/controller/BibliotecaControllerTest$TestesIntegracao.class
+com/fatec/biblioteca/controller/BibliotecaControllerTest.class
 com/fatec/biblioteca/factories/UsuarioFactoryTest.class
 com/fatec/biblioteca/controller/BibliotecaControllerTest$GerenciamentoRelatorios.class
 com/fatec/biblioteca/model/EmprestimoTest.class

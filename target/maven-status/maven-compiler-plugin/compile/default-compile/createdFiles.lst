@@ -4,9 +4,9 @@ com/fatec/biblioteca/model/Emprestimo$Status.class
 com/fatec/biblioteca/model/interfaces/BibliotecaRepository.class
 com/fatec/biblioteca/model/usuarios/Aluno.class
 com/fatec/biblioteca/model/usuarios/Usuario.class
-com/fatec/biblioteca/model/Livro.class
-com/fatec/biblioteca/model/Emprestimo.class
 com/fatec/biblioteca/Main.class
+com/fatec/biblioteca/model/Emprestimo.class
+com/fatec/biblioteca/model/Livro.class
 com/fatec/biblioteca/model/Biblioteca.class
 com/fatec/biblioteca/view/BibliotecaView.class
 com/fatec/biblioteca/model/usuarios/Professor.class
